@@ -7,6 +7,8 @@
   },
   "dependencies": {
     "athom-api": "^2.0.71",
+    "cli-table2": "^0.2.0",
+    "commander": "^2.11.0",
     "dotenv": "^4.0.0",
     "request": "^2.83.0",
     "request-promise": "^4.2.2",
