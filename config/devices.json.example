@@ -1,0 +1,7 @@
+[
+	{
+		"uuid": "asdf-asdf-asdf-asdf",
+		"capability": "measure_power",
+		"metric": "kitchen.fridge.power"
+	}
+]

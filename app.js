@@ -1,6 +1,9 @@
 require('dotenv').config();
-
+const HomeyAggregator = require("./lib/HomeyAggregator");
+const Commands = require("./lib/Commands");
 const program = require('commander');
+
+const cmds = new Commands();
 
 program
 		.version('0.1.0')
@@ -8,43 +11,11 @@ program
 		.option('-c, --capabilities <n>', 'List capabilities of device', parseInt)
 		.parse(process.argv);
 
-const HomeyApi = require("./lib/HomeyApi");
-const api = new HomeyApi(process.env.HOMEY_IP, process.env.BEARER_TOKEN);
-
 if (program.list) {
-	let Table = require('cli-table2');
-	let table = new Table({head: ["id", "name", "zone"]});
-
-
-	api.getDevices().then((devices) => {
-		let i = 0;
-
-		devices.forEach((device) => {
-			let caps = [];
-
-			table.push([i++, device.name, device.zone.name]);
-		});
-
-		console.log(table.toString());
-
-	});
-
+	cmds.listDevices();
 } else if (program.capabilities) {
-	let Table = require('cli-table2');
-	let table = new Table({head: ["Capability", "Type"]});
-
-	api.getDevices().then((devices) => {
-		let device = devices[Object.keys(devices)[program.capabilities]];
-		for (let key in device.capabilities) {
-			if (device.capabilities.hasOwnProperty(key)) {
-				table.push([key, device.capabilities[key].type]);
-			}
-		}
-		console.log(table.toString());
-
-	});
-
+	cmds.listCapabilities(program.capabilities);
 } else {
-
+	let h = new HomeyAggregator();
 }
 
