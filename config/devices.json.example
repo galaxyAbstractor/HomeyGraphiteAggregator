@@ -1,5 +1,7 @@
 [
 	{
+		"type": "poll",
+  	"poll_interval": 10000,
 		"uuid": "asdf-asdf-asdf-asdf",
 		"capability": "measure_power",
 		"metric": "kitchen.fridge.power"

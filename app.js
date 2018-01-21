@@ -1,5 +1,7 @@
 require('dotenv').config();
-const HomeyAggregator = require("./lib/HomeyAggregator");
+const Devices = require("./lib/Devices");
+const RealtimeAggregator = require("./lib/RealtimeAggregator");
+const PollingAggregator = require("./lib/PollingAggregator");
 const Commands = require("./lib/Commands");
 const program = require('commander');
 
@@ -16,6 +18,7 @@ if (program.list) {
 } else if (program.capabilities) {
 	cmds.listCapabilities(program.capabilities);
 } else {
-	let h = new HomeyAggregator();
+	new RealtimeAggregator();
+	new PollingAggregator();
 }
 
